@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section class="mt-5">
+    <h1 class="text-center pt-5">User Profile</h1>
+
+    <div class="card m-auto" style="width: 18rem;">
+        <img class="bd-placeholder-img card-img-left" width="100%" th:src="@{'/img/' + ${user.imageUrl}}" alt="" srcset="">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${user.name}"></h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${user.email}"></h6>
+            <p class="card-text" th:text="${user.description}"></p>
+        </div>
+        <div class="card-body">
+<!--            <a th:href="@{'/user/edit-user/' + ${user.cId}}" class="card-link"><i class="fa-regular fa-pen-to-square"></i></a>-->
+<!--            <a th:href="@{'/user/delete-user/' + ${user.cId}}" class="card-link"><i class="fa-regular fa-trash-can"></i></a>-->
+        </div>
+    </div>
+</section>
+</body>
+</html>

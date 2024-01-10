@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="base::layout(~{::section})"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <title>Signup</title>
+  </head>
+  <body>
+    <section class="m-auto mt-3" style="width: 30vw;">
+      <h1 class="text-center">Register Here</h1>
+      <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert " role="alert" th:text="${session.message.content}">
+      </div>
+      <form class="row g-3" th:action="@{do-register}" method="post" th:object="${user}" enctype="multipart/form-data">
+        <div class="col-md-12">
+            <label for="inputName" class="form-label">Name</label>
+            <input type="text" th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}" class="form-control" id="inputName" name="name" th:value="${user.name}">
+            <div class="invalid-feedback" th:each=" e: ${#fields.errors('name')}" th:text="${e}">
+              </div>
+          </div>
+        <div class="col-md-12">
+          <label for="inputEmail4" class="form-label">Email</label>
+          <input type="email" th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}" class="form-control" id="inputEmail4" name="email" th:value="${user.email}">
+          <div class="invalid-feedback" th:each=" e: ${#fields.errors('email')}" th:text="${e}">
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label for="inputPassword4" class="form-label">Password</label>
+          <input type="password" th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}" class="form-control" id="inputPassword4" name="password" required>
+          <div class="invalid-feedback" th:each=" e: ${#fields.errors('password')}" th:text="${e}">
+          </div>
+        </div>
+        <div class="col-md-12">
+            <textarea class="form-control" th:classappend="${#fields.hasErrors('description') ? 'is-invalid' : ''}" placeholder="Tell us about yourself" id="floatingTextarea" style="height: 8em;" name="description" th:text="${user.description}"></textarea>
+          <div class="invalid-feedback" th:each=" e: ${#fields.errors('description')}" th:text="${e}">
+          </div>
+          </div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Profile image</label>
+          <input class="form-control" type="file" id="formFile" name="profileImage">
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck" name="agreement">
+            <label class="form-check-label" for="gridCheck">
+              Accept T&C
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary d-block m-auto ">Sign up</button>
+        </div>
+      </form>
+    </section>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
